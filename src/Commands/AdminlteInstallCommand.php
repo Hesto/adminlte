@@ -5,7 +5,7 @@ namespace Hesto\Adminlte\Commands;
 use Illuminate\Console\Command;
 use Symfony\Component\Console\Input\InputOption;
 
-class ViewMakeCommand extends Command
+class AdminlteInstallCommand extends Command
 {
     /**
      * The filesystem instance.
