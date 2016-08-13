@@ -154,6 +154,8 @@ class AdminlteInstallCommand extends Command
         }
 
         $this->files->put($path, $this->files->get($gulpfile));
+
+        $this->info('Copied: ' . $path);
     }
 
     /**
