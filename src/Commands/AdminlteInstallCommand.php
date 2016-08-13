@@ -4,7 +4,9 @@ namespace Hesto\Adminlte\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Filesystem\Filesystem;
+use SplFileInfo;
 use Symfony\Component\Console\Input\InputOption;
+
 
 class AdminlteInstallCommand extends Command
 {
@@ -54,44 +56,104 @@ class AdminlteInstallCommand extends Command
         $this->copyGulpFile();
     }
 
+    /**
+     * Copy bower files to project's base path.
+     *
+     */
     public function copyBowerFiles()
     {
         $bowerFiles = $this->files->allFiles(__DIR__ . '/../../resources/bower/');
+
+        //manually added because allFiles method ignore dot files
+        $bowerFiles[] = new SplFileInfo(__DIR__ . '/../../resources/bower/.bowerrc');
+
         $this->copyFiles('/', $bowerFiles);
     }
 
+
+    /**
+     * Copy files method.
+     *
+     * @param $path
+     * @param $files
+     */
     public function copyFiles($path, $files)
     {
         foreach($files as $file)
         {
-            $filepath = base_path(). $path . $file->getFileName();
+            $name = $file->getFileName();
 
-            if($this->alreadyExists($path) && !$this->option('force')) {
-                $this->error($path . ' already exists!');
+            if(empty($name)) {
+                $name = $file->getExtension();
+            }
+
+            $filepath = base_path(). $path . $name;
+
+            if($this->alreadyExists($filepath) && !$this->option('force')) {
+                $this->error($filepath . ' already exists!');
 
                 continue;
             }
 
             $this->makeDirectory($filepath);
 
-            $this->files->put($filepath, $file->getPathname());
+            $this->files->put($filepath, $this->files->get($file->getPathname()));
+
+            $this->info('Copied: ' . $filepath);
         }
     }
 
+    /**
+     * Determine if the class already exists.
+     *
+     * @param $path
+     * @return bool
+     */
     protected function alreadyExists($path)
     {
         return $this->files->exists($path);
     }
 
+    /**
+     * Build the directory for the class if necessary.
+     *
+     * @param  string  $path
+     * @return string
+     */
+    protected function makeDirectory($path)
+    {
+        if (! $this->files->isDirectory(dirname($path))) {
+            $this->files->makeDirectory(dirname($path), 0777, true, true);
+        }
+    }
+
+    /**
+     * Copy all assets files to base assets folder path
+     *
+     */
     public function copyAssetsFiles()
     {
         $assetsFiles = $this->files->allFiles(__DIR__ . '/../../resources/assets/');
         $this->copyFiles('/resources/assets/', $assetsFiles);
     }
 
+    /**
+     * Copy gulpfile.js to project's base path.
+     *
+     * @return bool
+     */
     public function copyGulpFile()
     {
-        $this->files->put(base_path() . '/gulpfile.js', _DIR__ . '/../../resources/gulpfile.js');
+        $gulpfile = __DIR__ . '/../../resources/gulpfile.js';
+        $path = base_path() . '/gulpfile.js';
+
+        if($this->alreadyExists($path)) {
+            $this->error($path . ' already exists!');
+
+            return false;
+        }
+
+        $this->files->put($path, $this->files->get($gulpfile));
     }
 
     /**
@@ -102,7 +164,7 @@ class AdminlteInstallCommand extends Command
     protected function getOptions()
     {
         return [
-            ['force', 'f', InputOption::VALUE_OPTIONAL, 'Force override existing files', true],
+            ['force', 'f', InputOption::VALUE_NONE, 'Force override existing files'],
         ];
     }
 }
