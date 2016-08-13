@@ -1,0 +1,17 @@
+{
+  "name": "blank",
+  "authors": [
+    "Hesto <losiakp@gmail.com>"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.4",
+    "bootstrap-sass": "bootstrap-sass-official#~3.3.6",
+    "font-awesome": "~4.5.0",
+    "AdminLTE": "admin-lte#~2.3.2",
+    "Ionicons": "ionicons#~2.0.1",
+    "jquery-ui": "jqueryui#~1.11.4",
+    "moment": "~2.11.1",
+    "datatables.net": "^1.10.12",
+    "datatables.net-bs": "^1.10.12"
+  }
+}
