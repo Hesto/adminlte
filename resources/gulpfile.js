@@ -44,7 +44,7 @@ elixir(function(mix) {
 
         .styles([
             'vendor/app.css',
-            paths.adminlte + 'plugins/daterangepicker/daterangepicker-bs3.css',
+            paths.adminlte + 'plugins/daterangepicker/daterangepicker.css',
             paths.adminlte + 'plugins/timepicker/bootstrap-timepicker.min.css',
             paths.adminlte + 'plugins/select2/select2.min.css',
             paths.datatables_bs + 'css/dataTables.bootstrap.css',
