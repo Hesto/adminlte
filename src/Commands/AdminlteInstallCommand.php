@@ -147,7 +147,7 @@ class AdminlteInstallCommand extends Command
         $gulpfile = __DIR__ . '/../../resources/gulpfile.js';
         $path = base_path() . '/gulpfile.js';
 
-        if($this->alreadyExists($path)) {
+        if($this->alreadyExists($path) && !$this->option('force')) {
             $this->error($path . ' already exists!');
 
             return false;
