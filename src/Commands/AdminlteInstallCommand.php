@@ -2,6 +2,7 @@
 
 namespace Hesto\Adminlte\Commands;
 
+use Hesto\Core\Commands\InstallCommand;
 use SplFileInfo;
 
 
