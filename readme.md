@@ -1,6 +1,7 @@
 # Hesto AdminLTE
 
 - `adminlte:install`
+- `adminlte:layout`
 
 ## Usage
 
