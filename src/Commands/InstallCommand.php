@@ -68,18 +68,51 @@ abstract class InstallCommand extends Command
 
             $filepath = base_path(). $path . $name;
 
-            if($this->alreadyExists($filepath) && !$this->option('force')) {
-                $this->error($filepath . ' already exists!');
-
-                continue;
+            if($this->putFile($filepath, $file)) {
+                $this->info('Copied: ' . $filepath);
             }
-
-            $this->makeDirectory($filepath);
-
-            $this->files->put($filepath, $this->files->get($file->getPathname()));
-
-            $this->info('Copied: ' . $filepath);
         }
+    }
+
+    /**
+     * Install files method.
+     *
+     * @param $path
+     * @param $files
+     */
+    public function installFiles($path, $files)
+    {
+        foreach($files as $file)
+        {
+            $filepath = base_path(). $path . $file->getRelativePathname();
+
+            if($this->putFile($filepath, $file)) {
+                $this->info('Copied: ' . $filepath);
+            }
+        }
+    }
+
+    /**
+     * Put given file in path
+     *
+     * @param $path
+     * @param $file
+     * @return bool
+     * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
+     */
+    public function putFile($path, $file)
+    {
+        if($this->alreadyExists($path) && !$this->option('force')) {
+            $this->error($path . ' already exists!');
+
+            return false;
+        }
+
+        $this->makeDirectory($path);
+
+        $this->files->put($path, $this->files->get($file->getPathname()));
+
+        return true;
     }
 
     /**

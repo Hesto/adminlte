@@ -39,7 +39,7 @@ class AdminlteLayoutCommand extends InstallCommand
     {
         $files = $this->files->allFiles(__DIR__ . '/../../resources/layout/');
 
-        $this->copyFiles('/resources/views/' . $this->argument('name'), $files);
+        $this->installFiles('/resources/views/' . $this->argument('name') . '/', $files);
     }
 
     /**
