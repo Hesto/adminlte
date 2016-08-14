@@ -94,7 +94,7 @@ abstract class InstallCommand extends Command
 
     protected function parseFilename($file)
     {
-        return '/' . $file->getBasename($file->getExtension()) . $this->setExtension($file);
+        return '/' . $file->getBasename($file->getExtension()) . $this->getExtension($file);
     }
 
     /**
@@ -144,9 +144,18 @@ abstract class InstallCommand extends Command
         }
     }
 
-    protected function setExtension($file)
+    protected function getExtension($file)
     {
+        if($this->replaceExtensions()) {
+            return $this->replaceExtensions();
+        }
+
         return $file->getExtension();
+    }
+
+    public function replaceExtensions()
+    {
+        return false;
     }
 
     protected function compile($content)
