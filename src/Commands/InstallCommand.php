@@ -56,7 +56,7 @@ abstract class InstallCommand extends Command
      * @param $path
      * @param $files
      */
-    public function copyFiles($path, $files)
+    protected function copyFiles($path, $files)
     {
         foreach($files as $file)
         {
@@ -80,16 +80,21 @@ abstract class InstallCommand extends Command
      * @param $path
      * @param $files
      */
-    public function installFiles($path, $files)
+    protected function installFiles($path, $files)
     {
         foreach($files as $file)
         {
-            $filepath = base_path(). $path . $file->getRelativePathname();
+            $filepath = base_path(). $path . $file->getRelativePath() . $this->parseFilename($file);
 
             if($this->putFile($filepath, $file)) {
                 $this->info('Copied: ' . $filepath);
             }
         }
+    }
+
+    protected function parseFilename($file)
+    {
+        return '/' . $file->getBasename($file->getExtension()) . $this->setExtension($file);
     }
 
     /**
@@ -100,7 +105,7 @@ abstract class InstallCommand extends Command
      * @return bool
      * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
      */
-    public function putFile($path, $file)
+    protected function putFile($path, $file)
     {
         if($this->alreadyExists($path) && !$this->option('force')) {
             $this->error($path . ' already exists!');
@@ -110,7 +115,7 @@ abstract class InstallCommand extends Command
 
         $this->makeDirectory($path);
 
-        $this->files->put($path, $this->files->get($file->getPathname()));
+        $this->files->put($path, $this->compile($this->files->get($file->getPathname())));
 
         return true;
     }
@@ -137,6 +142,16 @@ abstract class InstallCommand extends Command
         if (! $this->files->isDirectory(dirname($path))) {
             $this->files->makeDirectory(dirname($path), 0777, true, true);
         }
+    }
+
+    protected function setExtension($file)
+    {
+        return $file->getExtension();
+    }
+
+    protected function compile($content)
+    {
+        return $content;
     }
 
     /**
