@@ -144,6 +144,12 @@ abstract class InstallCommand extends Command
         }
     }
 
+    /**
+     * Get file extension.
+     *
+     * @param $file
+     * @return bool
+     */
     protected function getExtension($file)
     {
         if($this->replaceExtensions()) {
@@ -153,11 +159,22 @@ abstract class InstallCommand extends Command
         return $file->getExtension();
     }
 
+    /**
+     * Replace extension.
+     *
+     * @return bool
+     */
     public function replaceExtensions()
     {
         return false;
     }
 
+    /**
+     * Compile content.
+     *
+     * @param $content
+     * @return mixed
+     */
     protected function compile($content)
     {
         return $content;
