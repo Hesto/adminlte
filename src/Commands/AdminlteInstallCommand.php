@@ -64,17 +64,9 @@ class AdminlteInstallCommand extends InstallCommand
      */
     public function copyGulpFile()
     {
-        $gulpfile = __DIR__ . '/../../resources/gulpfile.js';
+        $gulpfile = new SplFileInfo(__DIR__ . '/../../resources/gulpfile.js');
         $path = base_path() . '/gulpfile.js';
 
-        if($this->alreadyExists($path) && !$this->option('force')) {
-            $this->error($path . ' already exists!');
-
-            return false;
-        }
-
-        $this->files->put($path, $this->files->get($gulpfile));
-
-        $this->info('Copied: ' . $path);
+        $this->putFile($path, $gulpfile);
     }
 }
