@@ -24,18 +24,31 @@ class AdminlteServiceProvider extends ServiceProvider
     public function register()
     {
         $this->registerInstallCommand();
+        $this->registerLayoutCommand();
     }
 
     /**
-     * Register the make:view generator.
+     * Register the adminlte:install command.
      */
     private function registerInstallCommand()
     {
-        $this->app->singleton('command.hesto.install', function ($app) {
+        $this->app->singleton('command.hesto.adminlte.install', function ($app) {
             return $app['Hesto\Adminlte\Commands\AdminlteInstallCommand'];
         });
 
-        $this->commands('command.hesto.install');
+        $this->commands('command.hesto.adminlte.install');
+    }
+
+    /**
+     * Register the adminlte:layout command.
+     */
+    private function registerLayoutCommand()
+    {
+        $this->app->singleton('command.hesto.adminlte.layout', function ($app) {
+            return $app['Hesto\Adminlte\Commands\AdminlteLayoutCommand'];
+        });
+
+        $this->commands('command.hesto.adminlte.layout');
     }
 
 }
