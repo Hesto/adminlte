@@ -3,6 +3,7 @@
 namespace Hesto\Adminlte\Commands;
 
 use Hesto\Core\Commands\InstallCommand;
+use Symfony\Component\Console\Input\InputOption;
 use SplFileInfo;
 
 
@@ -69,5 +70,17 @@ class AdminlteInstallCommand extends InstallCommand
         $path = base_path() . '/gulpfile.js';
 
         $this->putFile($path, $gulpfile);
+    }
+
+    /**
+     * Get the console command options.
+     *
+     * @return array
+     */
+    protected function getOptions()
+    {
+        return [
+            ['force', 'f', InputOption::VALUE_NONE, 'Force override existing files'],
+        ];
     }
 }

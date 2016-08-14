@@ -4,6 +4,7 @@ namespace Hesto\Adminlte\Commands;
 
 use Hesto\Core\Commands\InstallCommand;
 use Symfony\Component\Console\Input\InputArgument;
+use Symfony\Component\Console\Input\InputOption;
 
 
 class AdminlteLayoutCommand extends InstallCommand
@@ -52,6 +53,18 @@ class AdminlteLayoutCommand extends InstallCommand
     {
         return [
             ['name', InputArgument::REQUIRED, 'The name of the layout'],
+        ];
+    }
+
+    /**
+     * Get the console command options.
+     *
+     * @return array
+     */
+    protected function getOptions()
+    {
+        return [
+            ['force', 'f', InputOption::VALUE_NONE, 'Force override existing files'],
         ];
     }
 }
