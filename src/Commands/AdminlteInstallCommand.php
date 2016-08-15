@@ -46,7 +46,7 @@ class AdminlteInstallCommand extends InstallCommand
         //manually added because allFiles method ignore dot files
         $bowerFiles[] = new SplFileInfo(__DIR__ . '/../../resources/bower/.bowerrc');
 
-        $this->installFiles('/', $bowerFiles);
+        $this->copyFiles('/', $bowerFiles);
     }
 
     /**
