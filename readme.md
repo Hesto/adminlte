@@ -1,5 +1,7 @@
 # Hesto AdminLTE
 
+This package provides easy way to install latest version of AdminLTE in your Laravel Project.
+
 - `adminlte:install`
 - `adminlte:layout`
 
@@ -43,9 +45,29 @@ npm install
 
 ### Step 6: Install AdminLTE in your project
 
+If you want to override existing files use `-f` flag. This command will override for example your gulpfile, so if you made any changes be careful. If you didn't make any changes or you're not familiar with gulpfile, just override it.
+
 ```
-php artisan adminlte:install
+php artisan adminlte:install -f
 bower install
-bower update
+```
+
+### Step 7: Compile AdminLTE using gulp
+
+Compiled files you can find in `/public/all.css` and `/public/all.js`. You can include this files to your layout. Additional packages can be added in `gulpfile.js`.
+
+```
+cd path/to/laravel/project
 gulp
 ```
+
+### Example layout
+If you want an example layout, you can use `adminlte:layout name_of_layout` command to generate it. It will create view files in `/resources/views/name_of_layout/`.
+
+```
+php artisan adminlte:layout admin
+```
+
+### AdminLTE Preview and Documentation
+
+https://almsaeedstudio.com/
