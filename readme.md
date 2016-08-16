@@ -1,6 +1,6 @@
 # Hesto AdminLTE
 
-This package provides easy way to install latest version of AdminLTE in your Laravel Project.
+This package provides easy way to install latest version of AdminLTE in your Laravel 5 Project. AdminLTE files are not hardcoded in package, they are downloaded by `bower` during installation and compiled by `gulp`.
 
 - `adminlte:install`
 - `adminlte:layout`
@@ -58,6 +58,14 @@ Compiled files you can find in `/public/all.css` and `/public/all.js`. You can i
 
 ```
 cd path/to/laravel/project
+gulp
+```
+
+### Updating to latest version of AdminLTE
+
+```
+cd path/to/laravel/project
+bower update
 gulp
 ```
 
