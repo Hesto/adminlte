@@ -1,4 +1,4 @@
-# Hesto AdminLTE
+# Hesto AdminLTE - DURING DEVELOPMENT. DO NOT USE IT.
 
 This package provides easy way to install latest version of AdminLTE in your Laravel 5 Project. AdminLTE files are not hardcoded in package, they are downloaded by `bower` during installation and compiled by `gulp`.
 
