@@ -30,33 +30,18 @@ class AdminlteInstallCommand extends InstallCommand
      */
     public function fire()
     {
-        $this->copyBowerFiles();
-        $this->copyAssetsFiles();
+        $this->installResourcesFiles();
         $this->copyGulpFile();
-    }
-
-    /**
-     * Copy bower files to project's base path.
-     *
-     */
-    public function copyBowerFiles()
-    {
-        $bowerFiles = $this->files->allFiles(__DIR__ . '/../../resources/bower/');
-
-        //manually added because allFiles method ignore dot files
-        $bowerFiles[] = new SplFileInfo(__DIR__ . '/../../resources/bower/.bowerrc');
-
-        $this->copyFiles('/', $bowerFiles);
     }
 
     /**
      * Copy all assets files to base assets folder path
      *
      */
-    public function copyAssetsFiles()
+    public function installResourcesFiles()
     {
-        $assetsFiles = $this->files->allFiles(__DIR__ . '/../../resources/assets/');
-        $this->copyFiles('/resources/assets/', $assetsFiles);
+        $assetsFiles = $this->files->allFiles(__DIR__ . '/../../resources/');
+        $this->copyFiles('/resources/', $assetsFiles);
     }
 
     /**
@@ -70,7 +55,7 @@ class AdminlteInstallCommand extends InstallCommand
         $path = base_path() . '/gulpfile.js';
 
         if($this->putFile($path, $gulpfile)) {
-            $this->info('Copied: ' . $path);
+            $this->info('Installed: ' . $path);
         }
     }
 

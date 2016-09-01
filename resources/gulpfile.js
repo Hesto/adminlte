@@ -1,4 +1,6 @@
-var elixir = require('laravel-elixir');
+const elixir = require('laravel-elixir');
+
+require('laravel-elixir-vue');
 
 /*
  |--------------------------------------------------------------------------
@@ -11,59 +13,51 @@ var elixir = require('laravel-elixir');
  |
  */
 
-var bower_path = "./vendor/bower_components/";
+var node_path = "./node_modules/";
 
 var paths = {
-    'public'   : 'public/',
-    'jquery'        : bower_path + "jquery/dist/",
-    'bootstrap'     : bower_path + "bootstrap-sass/assets/",
-    'fontawesome'   : bower_path + "font-awesome/",
-    'ionicons'      : bower_path + "Ionicons/",
-    'adminlte'      : bower_path + "AdminLTE/",
-    'moment'        : bower_path + "moment/",
-    'jqueryui'      : bower_path + "jquery-ui/",
-    'datatables'      : bower_path + "datatables.net/",
-    'datatables_bs'   : bower_path + "datatables.net-bs/"
+    'public'            : 'public/',
+    'bootstrap'         : node_path + "bootstrap-sass/assets/",
+    'datarangepicker'   : node_path + "bootstrap-daterangepicker/",
+    'timepicker'        : node_path + "bootstrap-timepicker/",
+    'fontawesome'       : node_path + "font-awesome/",
+    'ionicons'          : node_path + "ionicons/",
+    'adminlte'          : node_path + "admin-lte/",
+    'datatables_bs'     : node_path + "datatables.net-bs/"
 
 };
 
-elixir(function(mix) {
+elixir(mix => {
     mix
-        .copy(paths.fontawesome + '/fonts/', paths.public + 'fonts')
-        .copy(paths.ionicons + '/fonts/', paths.public + 'fonts')
-        .copy(paths.adminlte + '/dist/img/', paths.public + 'img/adminlte')
-        .copy(paths.bootstrap + '/fonts/bootstrap/', paths.public + 'fonts')
+    .sass('admin.scss', 'resources/dist/css')
+    .sass('front.scss', 'resources/dist/css')
 
-        .sass('app.scss', 'resources/assets/css/vendor', {
-            includePaths: [
-                paths.bootstrap + 'stylesheets',
-                paths.fontawesome + 'scss',
-                paths.ionicons + 'scss'
-            ]
-        })
+    .webpack('admin.js', 'resources/dist/js')
+    .webpack('front.js', 'resources/dist/js')
 
-        .styles([
-            'vendor/app.css',
-            paths.adminlte + 'plugins/daterangepicker/daterangepicker.css',
-            paths.adminlte + 'plugins/timepicker/bootstrap-timepicker.min.css',
-            paths.adminlte + 'plugins/select2/select2.min.css',
-            paths.datatables_bs + 'css/dataTables.bootstrap.css',
-            paths.adminlte + 'dist/css/AdminLTE.min.css',
-            paths.adminlte + 'dist/css/skins/skin-blue.min.css'
-        ], paths.public + 'css')
+    .copy(paths.fontawesome + 'fonts/', paths.public + 'fonts')
+    .copy(paths.ionicons + 'fonts/', paths.public + 'fonts')
+    .copy(paths.bootstrap + 'fonts/', paths.public + 'fonts')
+    .copy(paths.adminlte + 'dist/img/', paths.public + 'img/adminlte')
 
-        .scripts([
-            paths.jquery + 'jquery.min.js',
-            paths.bootstrap + 'javascripts/bootstrap.min.js',
-            paths.jqueryui + 'jquery-ui.min.js',
-            paths.datatables + 'js/jquery.dataTables.min.js',
-            paths.datatables_bs + 'js/dataTables.bootstrap.min.js',
-            paths.adminlte + 'plugins/daterangepicker/daterangepicker.js',
-            paths.adminlte + 'plugins/timepicker/bootstrap-timepicker.min.js',
-            paths.adminlte + 'plugins/select2/select2.full.min.js',
-            paths.adminlte + 'plugins/slimScroll/jquery.slimscroll.min.js',
-            paths.adminlte + 'plugins/fastclick/fastclick.js',
-            paths.adminlte + 'dist/js/app.min.js',
-            paths.moment + 'min/moment.min.js'
-        ], paths.public + 'js');
+    .styles([
+        './resources/dist/css/admin.css',
+        paths.timepicker + 'css/bootstrap-timepicker.min.css',
+        paths.datatables_bs + 'css/dataTables.bootstrap.css',
+        paths.adminlte + 'dist/css/AdminLTE.min.css',
+        paths.adminlte + 'dist/css/skins/skin-blue.min.css'
+    ], paths.public + 'css/admin.css')
+
+    .styles([
+        './resources/dist/css/front.css',
+    ], paths.public + 'css/front.css')
+
+    .scripts([
+        './resources/dist/js/admin.js',
+        paths.adminlte + 'dist/js/app.min.js'
+    ], paths.public + 'js/admin.js')
+
+    .scripts([
+        './resources/dist/js/front.js',
+    ], paths.public + 'js/front.js');
 });

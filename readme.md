@@ -1,6 +1,6 @@
 # Hesto AdminLTE - DURING DEVELOPMENT. DO NOT USE IT.
 
-This package provides easy way to install latest version of AdminLTE in your Laravel 5 Project. AdminLTE files are not hardcoded in package, they are downloaded by `bower` during installation and compiled by `gulp`.
+This package provides easy way to install latest version of AdminLTE in your Laravel 5 Project. AdminLTE files are not hardcoded in package, they are downloaded by `npm` during installation and compiled by `gulp`.
 
 - `adminlte:install`
 - `adminlte:layout`
@@ -26,35 +26,32 @@ public function register()
 }
 ```
 
-### Step 3: Install Node.js
+### Step 3: Install AdminLTE in your project
+
+If you want to override existing files use `-f` flag. This command will override for example your gulpfile, so if you made any changes be careful. If you didn't make any changes or you're not familiar with gulpfile, just override it.
+
+```
+php artisan adminlte:install -f
+```
+
+### Step 4: Install Node.js
 
 https://nodejs.org/en/download/
 
-### Step 4: Install bower and gulp globally
+### Step 5: Install gulp globally
 
 ```
-npm install -g bower gulp
+npm install -g gulp
 ```
 
-### Step 5: Install npm packages in your project
+### Step 6: Install npm packages in your project
 
 ```
 cd path/to/laravel/project
 npm install
 ```
 
-### Step 6: Install AdminLTE in your project
-
-If you want to override existing files use `-f` flag. This command will override for example your gulpfile, so if you made any changes be careful. If you didn't make any changes or you're not familiar with gulpfile, just override it.
-
-```
-php artisan adminlte:install -f
-bower install
-```
-
 ### Step 7: Compile AdminLTE using gulp
-
-Compiled files you can find in `/public/all.css` and `/public/all.js`. You can include this files to your layout. Additional packages can be added in `gulpfile.js`.
 
 ```
 cd path/to/laravel/project
@@ -64,8 +61,7 @@ gulp
 ### Updating to latest version of AdminLTE
 
 ```
-cd path/to/laravel/project
-bower update
+npm update
 gulp
 ```
 
