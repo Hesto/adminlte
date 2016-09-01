@@ -40,8 +40,8 @@ class AdminlteInstallCommand extends InstallCommand
      */
     public function installResourcesFiles()
     {
-        $assetsFiles = $this->files->allFiles(__DIR__ . '/../../resources/');
-        $this->copyFiles('/resources/', $assetsFiles);
+        $assetsFiles = $this->files->allFiles(__DIR__ . '/../../resources/resources/');
+        $this->installFiles('/resources/', $assetsFiles);
     }
 
     /**
@@ -64,7 +64,7 @@ class AdminlteInstallCommand extends InstallCommand
      *
      * @return array
      */
-    protected function getOptions()
+    public function getOptions()
     {
         return [
             ['force', 'f', InputOption::VALUE_NONE, 'Force override existing files'],
