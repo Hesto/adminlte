@@ -1,7 +1,9 @@
 
+    "admin-lte": "^2.3.6",
     "bootstrap-daterangepicker": "^2.1.24",
     "bootstrap-timepicker": "^0.5.2",
     "datatables.net": "^1.10.12",
+    "datatables.net-bs": "^1.10.12",
     "fastclick": "^1.0.6",
     "font-awesome": "^4.6.3",
     "ionicons": "^3.0.0",

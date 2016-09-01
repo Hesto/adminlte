@@ -34,27 +34,15 @@ If you want to override existing files use `-f` flag. This command will override
 php artisan adminlte:install -f
 ```
 
-### Step 4: Install Node.js
-
-https://nodejs.org/en/download/
-
-### Step 5: Install gulp globally
+### Step 4: Install npm packages in your project
 
 ```
-npm install -g gulp
-```
-
-### Step 6: Install npm packages in your project
-
-```
-cd path/to/laravel/project
 npm install
 ```
 
-### Step 7: Compile AdminLTE using gulp
+### Step 5: Compile AdminLTE using gulp
 
 ```
-cd path/to/laravel/project
 gulp
 ```
 
@@ -65,13 +53,25 @@ npm update
 gulp
 ```
 
-### Example layout
+## Setup Node + npm and gulp 
+
+### Install Node.js
+
+https://nodejs.org/en/download/
+
+### Install gulp globally
+
+```
+npm install -g gulp
+```
+
+## Example layout
 If you want an example layout, you can use `adminlte:layout name_of_layout` command to generate it. It will create view files in `/resources/views/name_of_layout/`.
 
 ```
 php artisan adminlte:layout admin
 ```
 
-### AdminLTE Preview and Documentation
+## AdminLTE Preview and Documentation
 
 https://almsaeedstudio.com/
