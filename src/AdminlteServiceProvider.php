@@ -25,6 +25,7 @@ class AdminlteServiceProvider extends ServiceProvider
     {
         $this->registerInstallCommand();
         $this->registerLayoutCommand();
+        $this->registerDependenciesCommand();
     }
 
     /**
@@ -51,4 +52,15 @@ class AdminlteServiceProvider extends ServiceProvider
         $this->commands('command.hesto.adminlte.layout');
     }
 
+    /**
+     * Register the adminlte:layout command.
+     */
+    private function registerDependenciesCommand()
+    {
+        $this->app->singleton('command.hesto.adminlte.dependencies', function ($app) {
+            return $app['Hesto\Adminlte\Commands\AdminlteInstallDependenciesCommand'];
+        });
+
+        $this->commands('command.hesto.adminlte.dependencies');
+    }
 }

@@ -5,6 +5,7 @@ namespace Hesto\Adminlte\Commands;
 use Hesto\Core\Commands\InstallCommand;
 use Symfony\Component\Console\Input\InputOption;
 use SplFileInfo;
+use Illuminate\Support\Facades\Artisan;
 
 
 class AdminlteInstallCommand extends InstallCommand
@@ -32,6 +33,10 @@ class AdminlteInstallCommand extends InstallCommand
     {
         $this->installResourcesFiles();
         $this->copyGulpFile();
+
+        Artisan::call('multi-auth:settings', [
+            '--force' => true
+        ]);
     }
 
     /**
