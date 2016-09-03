@@ -7,3 +7,4 @@ require('bootstrap-timepicker');
 require('select2');
 require('jquery-slimscroll');
 require('fastclick');
+require('html5shiv');
