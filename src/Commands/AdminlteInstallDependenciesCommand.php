@@ -21,7 +21,7 @@ class AdminlteInstallDependenciesCommand extends InstallContentCommand
     protected $description = 'Install npm dependencies';
 
     /**
-     * Get the destination path.
+     * Get settings array.
      *
      * @return string
      */
