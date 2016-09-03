@@ -69,7 +69,7 @@ npm install -g gulp
 If you want an example layout, you can use `adminlte:layout name_of_layout` command to generate it. It will create view files in `/resources/views/name_of_layout/`.
 
 ```
-php artisan adminlte:layout admin
+php artisan adminlte:layout admin -f
 ```
 
 ## AdminLTE Preview and Documentation
