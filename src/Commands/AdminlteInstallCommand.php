@@ -34,7 +34,7 @@ class AdminlteInstallCommand extends InstallCommand
         $this->installResourcesFiles();
         $this->copyGulpFile();
 
-        Artisan::call('multi-auth:settings', [
+        Artisan::call('adminlte:dependencies', [
             '--force' => true
         ]);
     }
