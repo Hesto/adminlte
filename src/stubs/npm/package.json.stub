@@ -1,5 +1,6 @@
 
     "admin-lte": "^2.3.6",
+    "bootstrap-colorpicker": "^2.3.3",
     "bootstrap-daterangepicker": "^2.1.24",
     "bootstrap-timepicker": "^0.5.2",
     "datatables.net": "^1.10.12",

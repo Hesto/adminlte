@@ -4,6 +4,7 @@ require('datatables.net')(window, $);
 require('datatables.net-bs')(window, $);
 require('bootstrap-daterangepicker');
 require('bootstrap-timepicker');
+require('bootstrap-colorpicker');
 require('select2');
 require('jquery-slimscroll');
 require('fastclick');

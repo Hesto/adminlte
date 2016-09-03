@@ -20,6 +20,7 @@ var paths = {
     'bootstrap'         : node_path + "bootstrap-sass/assets/",
     'datarangepicker'   : node_path + "bootstrap-daterangepicker/",
     'timepicker'        : node_path + "bootstrap-timepicker/",
+    'colorpicker'       : node_path + "bootstrap-colorpicker/",
     'fontawesome'       : node_path + "font-awesome/",
     'ionicons'          : node_path + "ionicons/",
     'adminlte'          : node_path + "admin-lte/",
@@ -43,6 +44,7 @@ elixir(mix => {
     .styles([
         './resources/dist/css/admin.css',
         paths.timepicker + 'css/bootstrap-timepicker.min.css',
+        paths.colorpicker + 'dist/css/bootstrap-colorpicker.min.css',
         paths.datatables_bs + 'css/dataTables.bootstrap.css',
         paths.adminlte + 'dist/css/AdminLTE.min.css',
         paths.adminlte + 'dist/css/skins/skin-blue.min.css'
