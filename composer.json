@@ -2,6 +2,7 @@
     "name": "hesto/adminlte",
     "description": "Admin LTE Installation package for Laravel 5",
     "license": "MIT",
+    "minimum-stability": "dev",
     "authors": [
         {
             "name": "Hesto",
