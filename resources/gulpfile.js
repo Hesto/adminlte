@@ -32,9 +32,11 @@ elixir(mix => {
     mix
     .sass('admin.scss', 'resources/dist/css')
     .sass('front.scss', 'resources/dist/css')
+    .sass('app.scss')
 
     .webpack('admin.js', 'resources/dist/js')
     .webpack('front.js', 'resources/dist/js')
+    .webpack('app.js')
 
     .copy(paths.fontawesome + 'fonts/', paths.public + 'fonts')
     .copy(paths.ionicons + 'fonts/', paths.public + 'fonts')
