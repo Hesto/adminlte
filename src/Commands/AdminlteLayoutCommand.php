@@ -31,6 +31,7 @@ class AdminlteLayoutCommand extends InstallCommand
     public function fire()
     {
         $this->copyLayoutFiles();
+        $this->copyLangFiles();
     }
 
     /**
@@ -40,8 +41,16 @@ class AdminlteLayoutCommand extends InstallCommand
     public function copyLayoutFiles()
     {
         $files = $this->files->allFiles(__DIR__ . '/../../resources/layout/');
-
         $this->installFiles('/resources/views/' . $this->argument('name') . '/', $files);
+    }
+
+    private function copyLangFiles()
+    {
+        $files = $this->files->allFiles(__DIR__ . '/../../resources/lang/pl/');
+        $this->installFiles('/resources/lang/pl/' . $this->argument('name') . '/', $files);
+
+        $files = $this->files->allFiles(__DIR__ . '/../../resources/lang/en/');
+        $this->installFiles('/resources/lang/en/' . $this->argument('name') . '/', $files);
     }
 
     /**
@@ -67,4 +76,6 @@ class AdminlteLayoutCommand extends InstallCommand
             ['force', 'f', InputOption::VALUE_NONE, 'Force override existing files'],
         ];
     }
+
+
 }
