@@ -17,5 +17,5 @@ require('./plugins/adminlte');
 Vue.component('example', require('./components/Example.vue'));
 
 const app = new Vue({
-    el: 'body'
+    el: '#app'
 });
