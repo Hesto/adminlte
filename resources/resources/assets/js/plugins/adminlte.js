@@ -1,7 +1,7 @@
 require('jquery-ui');
 require('moment');
-require('datatables.net')(window, $);
-require('datatables.net-bs')(window, $);
+require('datatables.net');
+require('datatables.net-bs');
 require('bootstrap-daterangepicker');
 require('bootstrap-timepicker');
 require('bootstrap-colorpicker');

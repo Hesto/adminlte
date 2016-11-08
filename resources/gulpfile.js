@@ -1,7 +1,6 @@
 const elixir = require('laravel-elixir');
 
-//require('laravel-elixir-vue');
-require('laravel-elixir-vueify');
+require('laravel-elixir-vue-2');
 
 /*
  |--------------------------------------------------------------------------
@@ -35,9 +34,9 @@ elixir(mix => {
     .sass('front.scss', 'resources/dist/css')
     .sass('app.scss')
 
-    .browserify('admin.js', 'resources/dist/js')
-    .browserify('front.js', 'resources/dist/js')
-    .browserify('app.js')
+    .webpack('admin.js', 'resources/dist/js')
+    .webpack('front.js', 'resources/dist/js')
+    .webpack('app.js')
 
     .copy(paths.fontawesome + 'fonts/', paths.public + 'fonts')
     .copy(paths.ionicons + 'fonts/', paths.public + 'fonts')
